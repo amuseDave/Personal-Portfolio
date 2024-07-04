@@ -117,6 +117,7 @@ sections.forEach((section) => {
 // Intersection Observer for header sticky
 const header = document.querySelector(".header");
 const burgerSticky = document.querySelector(".header-nav-burger");
+const uniqueLink = document.querySelectorAll(".project-link");
 
 const page = new IntersectionObserver(
   (entries) => {
@@ -138,6 +139,9 @@ const page = new IntersectionObserver(
     }
     header.classList.toggle("header-sticky", !entry.isIntersecting);
     burgerSticky.classList.toggle("header-sticky2", !entry.isIntersecting);
+    uniqueLink.forEach((link) => {
+      link.classList.toggle("hidden-link", entry.isIntersecting);
+    });
   },
   { threshold: 0.6 }
 );
