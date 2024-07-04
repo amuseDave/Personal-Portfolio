@@ -45,7 +45,7 @@ function activateDot() {
 
 function transform() {
   showCaseImages.forEach((img, i) => {
-    img.style.transform = `translateX(-${102 * currentImg}%)`;
+    img.style.transform = `translateX(-${100 * currentImg}%)`;
   });
 }
 
@@ -72,30 +72,44 @@ transform();
 //SECTION SLIDER END
 
 //Scroll feature for appering START
+// Intersection Observer for about section
 const about = document.querySelector(".about-container");
 about.classList.add("section-hidden");
-function scrollFun(entries, observer) {
-  const [entry] = entries;
-  console.log(entry);
-  if (!entry.isIntersecting) return;
-  about.classList.remove("section-hidden");
-  console.log(entry.target);
-  observer.unobserve(entry.target);
-}
-const section = new IntersectionObserver(scrollFun, {
-  root: null,
-  threshold: 0.15,
-});
-
+const section = new IntersectionObserver(
+  (entries, observer) => {
+    const [entry] = entries;
+    if (!entry.isIntersecting) return;
+    about.classList.remove("section-hidden");
+    observer.unobserve(entry.target);
+  },
+  { threshold: 0.3 }
+);
 section.observe(about);
 
-const page = new IntersectionObserver(navSticky, {
-  root: null,
-  threshold: 0.5,
-});
-
+// Intersection Observer for header sticky
+const header = document.querySelector(".header");
+const page = new IntersectionObserver(
+  (entries) => {
+    const [entry] = entries;
+    header.classList.toggle("header-sticky", !entry.isIntersecting);
+  },
+  { threshold: 0.6 }
+);
 page.observe(document.querySelector(".projects"));
+
 //Scroll feature for appering END
 
 //
 // SECTION ABOUT START
+
+let click = 0;
+const buttons = document.querySelectorAll(".button");
+buttons[click].classList.add("btn-active");
+
+document.querySelector(".about-me-buttons").addEventListener("click", (e) => {
+  if (!e.target.classList.contains("button")) return;
+  buttons.forEach((button) => {
+    button.classList.remove("btn-active");
+  });
+  e.target.classList.add("btn-active");
+});
