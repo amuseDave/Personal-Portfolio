@@ -27,6 +27,7 @@ let currentImg = 0;
 const showCaseImages = document.querySelectorAll(".img-showcase");
 const totalImages = showCaseImages.length;
 const dotCont = document.querySelector(".dots-container");
+const names = document.querySelectorAll(".name");
 
 function createDots() {
   showCaseImages.forEach((img, i) => {
@@ -48,6 +49,12 @@ function transform() {
     img.style.transform = `translateX(-${100 * currentImg}%)`;
   });
 }
+function changeText() {
+  names.forEach((name) => {
+    name.classList.add("hidden-text");
+  });
+  document.querySelector(`.name-${currentImg}`).classList.remove("hidden-text");
+}
 
 function slide(e) {
   console.log(currentImg);
@@ -56,6 +63,7 @@ function slide(e) {
   if (currentImg === -1) currentImg = totalImages - 1;
   transform();
   activateDot();
+  changeText();
 }
 
 document.querySelector(".dots-container").addEventListener("click", (e) => {
@@ -73,19 +81,22 @@ transform();
 
 //Scroll feature for appering START
 // Intersection Observer for about section
-const about = document.querySelector(".about-container");
-about.classList.add("section-hidden");
-const section = new IntersectionObserver(
+
+const sectionObserver = new IntersectionObserver(
   (entries, observer) => {
     const [entry] = entries;
     if (!entry.isIntersecting) return;
-    about.classList.remove("section-hidden");
+    entry.target.classList.remove("section-hidden");
     observer.unobserve(entry.target);
   },
-  { threshold: 0.3 }
+  { threshold: 0.35 }
 );
-section.observe(about);
 
+const sections = document.querySelectorAll("section");
+sections.forEach((section) => {
+  section.classList.add("section-hidden");
+  sectionObserver.observe(section);
+});
 // Intersection Observer for header sticky
 const header = document.querySelector(".header");
 const page = new IntersectionObserver(

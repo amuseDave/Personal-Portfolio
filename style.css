@@ -49,6 +49,7 @@ body {
   align-items: center;
   justify-content: space-between;
   position: absolute;
+  z-index: 200;
 }
 
 .header h2 {
@@ -72,7 +73,7 @@ body {
 .header-nav {
   display: flex;
   justify-content: space-around;
-  width: 450px;
+  width: 400px;
 }
 .header-nav a {
   text-decoration: none;
@@ -91,6 +92,7 @@ body {
   align-items: center;
   flex-direction: column;
   z-index: 1;
+  position: relative;
 }
 .projects h1 {
   margin-top: 200px;
@@ -152,7 +154,7 @@ body {
   color: var(--light-color);
 }
 
-section h1 {
+main h1 {
   color: var(--dark-color);
   font-weight: 600;
   font-size: 3rem;
@@ -162,7 +164,20 @@ section h1 {
 .projects h3 {
   font-weight: 400;
   font-size: 1.6rem;
-  color: var(--dark-color);
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  text-align: center;
+  color: var(--darkest-color);
+  transition: all 0.5s ease-in-out;
+}
+.project-name {
+  position: relative;
+  height: 40px;
+  width: 100%;
+}
+.hidden-text {
+  opacity: 0;
 }
 .projects span.bg {
   position: relative;
@@ -205,20 +220,24 @@ section h1 {
   }
 }
 @media (max-width: 600px) {
-  section h1 {
+  section h1,
+  main h1 {
     font-size: 2.5rem;
   }
 }
 @media (max-width: 550px) {
-  section h1 {
+  section h1,
+  main h1 {
     font-size: 2.3rem;
   }
 }
 @media (max-width: 460px) {
-  section h1 {
+  section h1,
+  main h1 {
     font-size: 1.9rem;
   }
-  .projects h3 {
+  section h1,
+  main h1 {
     font-size: 1.2rem;
   }
 }
@@ -227,11 +246,15 @@ section h1 {
 
 /* SECTION ABOUT START */
 section.about {
-  height: 55svh;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+.about h1 {
+  margin-top: 50px;
 }
 
 .about span.bg::after {
@@ -241,6 +264,10 @@ section.about {
 }
 .about h1 {
   color: var(--darkest-color);
+  font-weight: 600;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  position: relative;
 }
 
 .about-container {
@@ -297,13 +324,13 @@ section.about {
 }
 
 .text-container {
-  height: 300px;
   border-radius: 10px;
-  background-color: var(--light-color);
   box-shadow: 0px 0px 5px var(--darkest-color);
   width: 100%;
   margin-top: 20px;
   position: relative;
+  background-color: var(--light-color);
+  height: 300px;
 }
 
 .text {
@@ -315,6 +342,13 @@ section.about {
   right: 0;
   color: var(--darkest-color);
   text-align: center;
+}
+.text .icon,
+.text .icon2 {
+  margin-top: 20px;
+}
+.text .icon2 {
+  width: 40px;
 }
 .text h3 {
   margin-top: 20px;
@@ -330,7 +364,57 @@ section.about {
     font-size: 2.5rem;
   }
 }
+@media (max-width: 850px) {
+  .text-container {
+    height: 400px;
+  }
+}
+@media (max-width: 600px) {
+  .text-container {
+    height: 500px;
+  }
+}
+@media (max-width: 450px) {
+  .text-container {
+    height: 600px;
+  }
+}
 
+/* SECTION ABOUT END */
+
+/* SECTION IMAGES START */
+.images {
+  width: 100%;
+  max-width: 1200px; /* Adjust max-width as needed */
+  margin: 0 auto; /* Center the section horizontally */
+  padding: 20px; /* Add padding around the section */
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.images h1 {
+  font-size: 3rem;
+  color: var(--dark-color);
+  text-align: center;
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-gap: 20px; /* Gap between grid items */
+}
+
+.images img {
+  max-width: 100%; /* Ensure images are responsive */
+  max-height: 300px; /* Limit image height */
+  display: block; /* Remove extra space below inline images */
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* One column on smaller screens */
+  }
+}
 footer {
   height: 40svh;
 }
