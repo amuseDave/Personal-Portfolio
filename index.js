@@ -1,23 +1,40 @@
 // header/navigation START
-const headerNav = document.querySelector(".header-nav");
+const headerNav = document.querySelectorAll(".header-nav");
 const navLinks = document.querySelectorAll(".nav-link");
+const burgerI = document.querySelector(".burger-i");
+const burgerMenu = document.querySelector(".header-nav-burger");
 
-headerNav.addEventListener("mouseover", (e) => {
-  navLinks.forEach((link) => {
-    link.style.opacity = e.target.classList.contains("header-nav") ? 1 : 0.5;
-  });
-  e.target.style.opacity = 1;
-});
-
-headerNav.addEventListener("mouseout", (e) => {
-  navLinks.forEach((link) => {
-    link.style.opacity = 1;
+headerNav.forEach((header) => {
+  header.addEventListener("mouseover", (e) => {
+    navLinks.forEach((link) => {
+      link.style.opacity = e.target.classList.contains("header-nav") ? 1 : 0.5;
+    });
+    e.target.style.opacity = 1;
   });
 });
-headerNav.addEventListener("click", (e) => {
-  if (!e.target.classList.contains("nav-link")) return;
-  const element = document.querySelector(`.${e.target.dataset.link}`);
-  element.scrollIntoView({ behavior: "smooth" });
+
+headerNav.forEach((header) => {
+  header.addEventListener("mouseout", (e) => {
+    navLinks.forEach((link) => {
+      link.style.opacity = 1;
+    });
+  });
+});
+headerNav.forEach((header) => {
+  header.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("nav-link")) return;
+    const element = document.querySelector(`.${e.target.dataset.link}`);
+    element.scrollIntoView({ behavior: "smooth" });
+  });
+});
+burgerI.addEventListener("click", () => {
+  if (burgerMenu.classList.contains("header-sticky2")) {
+    console.log("works");
+    burgerMenu.classList.toggle("header-hidden-y");
+  } else {
+    console.log("works");
+    burgerMenu.classList.toggle("header-hidden");
+  }
 });
 // header/navigation END
 
@@ -99,10 +116,28 @@ sections.forEach((section) => {
 });
 // Intersection Observer for header sticky
 const header = document.querySelector(".header");
+const burgerSticky = document.querySelector(".header-nav-burger");
+
 const page = new IntersectionObserver(
   (entries) => {
     const [entry] = entries;
+    if (entry.isIntersecting) {
+      burgerMenu.classList.add("header-hidden");
+      burgerMenu.classList.remove("header-hidden-y");
+      burgerMenu.classList.remove("header-transition");
+      setTimeout(() => {
+        burgerMenu.classList.add("header-transition2");
+      }, 300);
+    } else if (!entry.isIntersecting) {
+      burgerMenu.classList.remove("header-hidden");
+      burgerMenu.classList.add("header-hidden-y");
+      burgerMenu.classList.remove("header-transition2");
+      setTimeout(() => {
+        burgerMenu.classList.add("header-transition");
+      }, 300);
+    }
     header.classList.toggle("header-sticky", !entry.isIntersecting);
+    burgerSticky.classList.toggle("header-sticky2", !entry.isIntersecting);
   },
   { threshold: 0.6 }
 );
