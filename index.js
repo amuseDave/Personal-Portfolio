@@ -102,14 +102,28 @@ page.observe(document.querySelector(".projects"));
 //
 // SECTION ABOUT START
 
-let click = 0;
+let textId = 0;
 const buttons = document.querySelectorAll(".button");
-buttons[click].classList.add("btn-active");
+const texts = document.querySelectorAll(`.text`);
 
-document.querySelector(".about-me-buttons").addEventListener("click", (e) => {
-  if (!e.target.classList.contains("button")) return;
+function showButton() {
   buttons.forEach((button) => {
     button.classList.remove("btn-active");
   });
+  document.querySelector(`.btn-${textId}`).classList.add("btn-active");
+}
+
+function showText() {
+  texts.forEach((text) => text.classList.add("hidden"));
+  document.querySelector(`.text-${textId}`).classList.remove("hidden");
+}
+showButton();
+showText();
+document.querySelector(".about-me-buttons").addEventListener("click", (e) => {
+  if (!e.target.classList.contains("button")) return;
+
   e.target.classList.add("btn-active");
+  textId = Number(e.target.dataset.id);
+  showText();
+  showButton();
 });
