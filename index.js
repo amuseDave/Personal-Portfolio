@@ -107,15 +107,27 @@ function changeText() {
   document.querySelector(`.name-${currentImg}`).classList.remove("hidden-text");
 }
 
-function slide(e) {
-  console.log(currentImg);
-  currentImg += e.target.classList.contains("arrow-right") ? 1 : -1;
+function slideLogic() {
   if (currentImg === totalImages) currentImg = 0;
   if (currentImg === -1) currentImg = totalImages - 1;
   transform();
   activateDot();
   changeText();
 }
+
+function slide(e) {
+  console.log(currentImg);
+  currentImg += e.target.classList.contains("arrow-right") ? 1 : -1;
+  slideLogic();
+}
+window.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") {
+    currentImg--;
+  } else if (e.key === "ArrowRight") {
+    currentImg++;
+  }
+  slideLogic();
+});
 
 document.querySelector(".dots-container").addEventListener("click", (e) => {
   if (!e.target.classList.contains("dot")) return;
