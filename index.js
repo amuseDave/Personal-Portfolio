@@ -6,6 +6,7 @@ const burgerMenu = document.querySelector(".header-nav-burger");
 const overlay = document.querySelector(".overlay");
 const contacts = document.querySelector(".contacts");
 const contactsBtn = document.querySelector(".contacts-bttn");
+const aboutCont = document.querySelector(".about-container-wrapper");
 
 headerNav.forEach((header) => {
   header.addEventListener("mouseover", (e) => {
@@ -36,6 +37,14 @@ headerNav.forEach((header) => {
     }
   });
 });
+
+document.querySelector(".nav-link-about").addEventListener("click", () => {
+  aboutCont.style.transform = "scale(1.06)";
+  setTimeout(() => {
+    aboutCont.style.transform = "scale(1)";
+  }, 200);
+});
+
 overlay.addEventListener("click", () => {
   overlay.classList.add("overlay-hidden");
   contacts.classList.add("overlay-hidden");
