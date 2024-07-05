@@ -199,6 +199,9 @@ body {
   width: 100%;
   transition: all 1s;
 }
+.projects .img a {
+  width: 100%;
+}
 
 .dots-container {
   bottom: -40px;
