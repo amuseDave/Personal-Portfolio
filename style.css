@@ -35,7 +35,6 @@ body {
     var(--lightest-color),
     var(--lightest-color),
     var(--lightest-color),
-    var(--darkest-color),
     var(--darkest-color)
   );
   background-color: var(--lightest-color);
@@ -276,7 +275,7 @@ main h1 {
 
 @media (max-width: 900px) {
   .projects {
-    height: auto;
+    height: 100svh;
   }
 }
 @media (max-width: 900px) {
@@ -335,7 +334,7 @@ main h1 {
 
 /* SECTION ABOUT START */
 section.about {
-  height: 80svh;
+  height: 75svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -360,8 +359,8 @@ section.about {
 
 .about-container {
   align-items: center;
-
   flex: 1;
+  padding: 0px 20px;
   max-width: 900px;
   margin-bottom: 130px;
   margin: 0px 20px;
@@ -375,6 +374,7 @@ section.about {
 }
 .about-container-wrapper {
   width: 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -414,12 +414,10 @@ section.about {
 
 .text-container {
   border-radius: 10px;
-  box-shadow: 0px 0px 5px var(--darkest-color);
+
   width: 100%;
   margin-top: 20px;
   position: relative;
-  background-color: var(--light-color);
-  height: 300px;
 }
 
 .text {
@@ -432,12 +430,28 @@ section.about {
   color: var(--darkest-color);
   text-align: center;
 }
-.text .icon,
-.text .icon2 {
-  margin-top: 20px;
+.text h3 {
+  background-color: var(--light-color);
+  box-shadow: 0px 0px 5px var(--darkest-color);
+  position: relative;
+  padding: 10px 10px 60px 10px;
+  border-radius: 10px;
 }
+h3 .icon {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .text .icon2 {
-  width: 40px;
+  width: 36px;
+}
+.icon-box {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .text h3 {
   margin-top: 20px;
@@ -446,26 +460,38 @@ section.about {
 
 @media (max-width: 500px) {
   .about-me-buttons .button {
-    width: 110px;
+    width: 105px;
     font-size: 0.9rem;
   }
   .about h1 {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
   }
 }
+
 @media (max-width: 850px) {
   .text-container {
-    height: 400px;
+    height: 300px;
+    font-size: 14px;
+  }
+  .about h1 {
+    font-size: 2.6rem;
   }
 }
 @media (max-width: 600px) {
   .text-container {
-    height: 500px;
+    height: 400px;
+  }
+  .about h1 {
+    font-size: 2.45rem;
   }
 }
 @media (max-width: 450px) {
   .text-container {
-    height: 600px;
+    font-size: 13px;
+    height: 500px;
+  }
+  section.about {
+    height: 90svh;
   }
 }
 

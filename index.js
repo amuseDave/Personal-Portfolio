@@ -44,6 +44,12 @@ document.querySelector(".nav-link-about").addEventListener("click", () => {
     aboutCont.style.transform = "scale(1)";
   }, 200);
 });
+document.querySelector(".nav-link-about-2").addEventListener("click", () => {
+  aboutCont.style.transform = "scale(1.03)";
+  setTimeout(() => {
+    aboutCont.style.transform = "scale(1)";
+  }, 200);
+});
 
 overlay.addEventListener("click", () => {
   overlay.classList.add("overlay-hidden");
@@ -152,7 +158,7 @@ const sectionObserver = new IntersectionObserver(
     entry.target.classList.remove("section-hidden");
     observer.unobserve(entry.target);
   },
-  { threshold: 0.25 }
+  { threshold: 0.2 }
 );
 
 const sections = document.querySelectorAll("section");
