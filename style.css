@@ -8,20 +8,10 @@
 }
 
 :root {
-  /* --lightest-color: #f1f6f9;
-  --light-color: #9ba4b4;
-  --dark-color: #394867;
-  --darkest-color: #14274e; */
-
-  /* --darkest-color: #222831;
-  --dark-color: #393e46;
-  --light-color: #00adb5;
-  --lightest-color: #eeeeee; */
-
-  /* --darkest-color: #222831;
-  --dark-color: #393e46;
-  --light-color: #00adb5;
-  --lightest-color: #eeeeee; */
+  /* --darkest-color: #2c3333;
+  --dark-color: #2e4f4f;
+  --light-color: #0e8388;
+  --lightest-color: #cbe4de; */
 
   --darkest-color: #2c3333;
   --dark-color: #2e4f4f;
@@ -276,7 +266,7 @@ main h1 {
 
 @media (max-width: 900px) {
   .projects {
-    height: 100svh;
+    height: 70svh;
   }
 }
 @media (max-width: 900px) {
@@ -492,7 +482,7 @@ h3 .icon {
     height: 500px;
   }
   section.about {
-    height: 90svh;
+    height: 102svh;
   }
 }
 
