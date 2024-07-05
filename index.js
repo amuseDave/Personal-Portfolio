@@ -30,7 +30,6 @@ headerNav.forEach((header) => {
     if (e.target.dataset.link === "contacts") {
       overlay.classList.remove("overlay-hidden");
       contacts.classList.remove("overlay-hidden");
-      console.log("logic");
     } else {
       const element = document.querySelector(`.${e.target.dataset.link}`);
       element.scrollIntoView({ behavior: "smooth" });
@@ -56,7 +55,6 @@ overlay.addEventListener("click", () => {
   contacts.classList.add("overlay-hidden");
 });
 window.addEventListener("keydown", (e) => {
-  console.log(e.key);
   if (e.key === "Escape") {
     overlay.classList.add("overlay-hidden");
     contacts.classList.add("overlay-hidden");
@@ -69,10 +67,8 @@ contactsBtn.addEventListener("click", () => {
 
 burgerI.addEventListener("click", () => {
   if (burgerMenu.classList.contains("header-sticky2")) {
-    console.log("works");
     burgerMenu.classList.toggle("header-hidden-y");
   } else {
-    console.log("works");
     burgerMenu.classList.toggle("header-hidden");
   }
 });
@@ -80,27 +76,27 @@ burgerI.addEventListener("click", () => {
 
 // SECTION SLIDER START
 //
-const images = document.querySelectorAll(".project-showcase .img");
-const linkArray = [
-  "https://amusedave.github.io/diceGame/",
-  "https://amusedave.github.io/RockPaperScissorsGame/",
-  "https://amusedave.github.io/audioMemoryGame/",
-  "https://amusedave.github.io/amazonProject/",
-  "https://amusedave.github.io/youTube/",
-  "https://amusedave.github.io/facebook/",
-];
-images.forEach((img, index) => {
-  img.addEventListener("click", () => {
-    window.open(linkArray[index], "_blank");
-  });
-});
+// const images = document.querySelectorAll(".project-showcase .img");
+// const linkArray = [
+//   "https://amusedave.github.io/diceGame/",
+//   "https://amusedave.github.io/RockPaperScissorsGame/",
+//   "https://amusedave.github.io/audioMemoryGame/",
+//   "https://amusedave.github.io/amazonProject/",
+//   "https://amusedave.github.io/youTube/",
+//   "https://amusedave.github.io/facebook/",
+// ];
+// images.forEach((img, index) => {
+//   img.addEventListener("click", () => {
+//     window.open(linkArray[index], "_blank");
+//   });
+// });
 
-let currentImg = 0;
-const showCaseImages = document.querySelectorAll(".img-showcase");
+const showCaseImages = document.querySelectorAll(".img-link-box");
 const totalImages = showCaseImages.length;
 const dotCont = document.querySelector(".dots-container");
 const names = document.querySelectorAll(".name");
-
+let currentImg = 0;
+/**DOTS CREATED */
 function createDots() {
   showCaseImages.forEach((img, i) => {
     dotCont.insertAdjacentHTML(
@@ -115,52 +111,54 @@ function activateDot() {
     dot.classList.toggle("dot-active", i === currentImg);
   });
 }
+createDots();
+//DOTS CREATED
 
-function transform() {
-  showCaseImages.forEach((img, i) => {
-    img.style.transform = `translateX(-${100 * currentImg}%)`;
-  });
-}
+// USE IT WHEN CURRENT IMG CHANGE
 function changeText() {
   names.forEach((name) => {
     name.classList.add("hidden-text");
   });
   document.querySelector(`.name-${currentImg}`).classList.remove("hidden-text");
 }
-
-function slideLogic() {
-  if (currentImg === totalImages) currentImg = 0;
-  if (currentImg === -1) currentImg = totalImages - 1;
-  transform();
-  activateDot();
-  changeText();
-}
-
-function slide(e) {
-  console.log(currentImg);
-  currentImg += e.target.classList.contains("arrow-right") ? 1 : -1;
-  slideLogic();
-}
+// USE IT WHEN CURRENT IMG CHANGE
 window.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") {
-    currentImg--;
+    moveLeft();
   } else if (e.key === "ArrowRight") {
-    currentImg++;
+    moveRight();
   }
-  slideLogic();
 });
+
+function move() {
+  showCaseImages.forEach((img, i) => {
+    img.style.transform = `translateX(${100 * (i - currentImg)}%)`;
+  });
+  changeText();
+  activateDot();
+}
+function moveRight() {
+  if (currentImg === totalImages - 1) currentImg = 0;
+  else currentImg++;
+  move();
+}
+
+function moveLeft() {
+  if (currentImg === 0) currentImg = totalImages - 1;
+  else currentImg--;
+  move();
+}
 
 document.querySelector(".dots-container").addEventListener("click", (e) => {
   if (!e.target.classList.contains("dot")) return;
   currentImg = Number(e.target.dataset.dot);
-  transform();
-  activateDot();
+  move();
 });
-document.querySelector(".arrow-left").addEventListener("click", slide);
 
-document.querySelector(".arrow-right").addEventListener("click", slide);
-createDots();
-transform();
+document.querySelector(".arrow-left").addEventListener("click", moveLeft);
+
+document.querySelector(".arrow-right").addEventListener("click", moveRight);
+
 //SECTION SLIDER END
 
 //Scroll feature for appering START
