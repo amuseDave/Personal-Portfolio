@@ -198,9 +198,7 @@ body {
   filter: brightness(120%) blur(0.4px);
   width: 100%;
   transition: all 1s;
-}
-.projects .img a {
-  width: 100%;
+  cursor: pointer;
 }
 
 .dots-container {
