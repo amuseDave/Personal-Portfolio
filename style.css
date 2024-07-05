@@ -275,6 +275,11 @@ main h1 {
 }
 
 @media (max-width: 900px) {
+  .projects {
+    height: auto;
+  }
+}
+@media (max-width: 900px) {
   .projects .arrow-left,
   .projects .arrow-right {
     width: 50px;
@@ -298,6 +303,9 @@ main h1 {
   }
 }
 @media (max-width: 600px) {
+  .projects h3 {
+    font-size: 1.4rem;
+  }
   section h1,
   main h1 {
     font-size: 2.5rem;
@@ -310,13 +318,16 @@ main h1 {
   }
 }
 @media (max-width: 460px) {
+  .projects h3 {
+    font-size: 1.2rem;
+  }
   section h1,
   main h1 {
     font-size: 1.9rem;
   }
   section h1,
   main h1 {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
   }
 }
 
@@ -324,11 +335,10 @@ main h1 {
 
 /* SECTION ABOUT START */
 section.about {
-  height: auto;
+  height: 80svh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   transition: all 0.3s ease-in-out;
 }
 .about h1 {
@@ -350,7 +360,7 @@ section.about {
 
 .about-container {
   align-items: center;
-  justify-content: center;
+
   flex: 1;
   max-width: 900px;
   margin-bottom: 130px;
@@ -493,6 +503,40 @@ section.about {
     grid-template-columns: 1fr; /* One column on smaller screens */
   }
 }
-footer {
-  height: 40svh;
+
+/*OVERLAY START*/
+.contacts {
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  width: 350px;
+  z-index: 1000;
+  height: 350px;
+  background-color: var(--darkest-color);
+  transform: translate(-50%, -50%);
 }
+.overlay {
+  content: "";
+  background-color: #2c333396;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100svw;
+  height: 100svh;
+  bottom: 0;
+  backdrop-filter: blur(5px); /* Apply blur effect */
+  z-index: 900; /* Place it behind the contacts element */
+  transition: all 0.4s ease-in-out;
+}
+.overlay-hidden {
+  display: none;
+}
+.contacts-bttn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+/*OVERLAY END*/

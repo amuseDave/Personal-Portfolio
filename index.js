@@ -3,6 +3,9 @@ const headerNav = document.querySelectorAll(".header-nav");
 const navLinks = document.querySelectorAll(".nav-link");
 const burgerI = document.querySelector(".burger-i");
 const burgerMenu = document.querySelector(".header-nav-burger");
+const overlay = document.querySelector(".overlay");
+const contacts = document.querySelector(".contacts");
+const contactsBtn = document.querySelector(".contacts-bttn");
 
 headerNav.forEach((header) => {
   header.addEventListener("mouseover", (e) => {
@@ -23,10 +26,32 @@ headerNav.forEach((header) => {
 headerNav.forEach((header) => {
   header.addEventListener("click", (e) => {
     if (!e.target.classList.contains("nav-link")) return;
-    const element = document.querySelector(`.${e.target.dataset.link}`);
-    element.scrollIntoView({ behavior: "smooth" });
+    if (e.target.dataset.link === "contacts") {
+      overlay.classList.remove("overlay-hidden");
+      contacts.classList.remove("overlay-hidden");
+      console.log("logic");
+    } else {
+      const element = document.querySelector(`.${e.target.dataset.link}`);
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   });
 });
+overlay.addEventListener("click", () => {
+  overlay.classList.add("overlay-hidden");
+  contacts.classList.add("overlay-hidden");
+});
+window.addEventListener("keydown", (e) => {
+  console.log(e.key);
+  if (e.key === "Escape") {
+    overlay.classList.add("overlay-hidden");
+    contacts.classList.add("overlay-hidden");
+  }
+});
+contactsBtn.addEventListener("click", () => {
+  overlay.classList.add("overlay-hidden");
+  contacts.classList.add("overlay-hidden");
+});
+
 burgerI.addEventListener("click", () => {
   if (burgerMenu.classList.contains("header-sticky2")) {
     console.log("works");
@@ -106,7 +131,7 @@ const sectionObserver = new IntersectionObserver(
     entry.target.classList.remove("section-hidden");
     observer.unobserve(entry.target);
   },
-  { threshold: 0.35 }
+  { threshold: 0.25 }
 );
 
 const sections = document.querySelectorAll("section");
