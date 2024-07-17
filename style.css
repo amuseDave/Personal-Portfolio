@@ -190,7 +190,7 @@ body {
   position: relative;
 }
 .projects .img {
-  filter: brightness(120%) blur(0.4px);
+  filter: brightness(100%) blur(0.4px);
   width: 100%;
   transition: all 1s;
   cursor: pointer;
@@ -621,4 +621,14 @@ h3 .icon {
 
 .img-link-box-5 {
   transform: translateX(500%);
+}
+
+.img-link-box-6 {
+  transform: translateX(600%);
+}
+.img-link-box-7 {
+  transform: translateX(700%);
+}
+.img-link-box-8 {
+  transform: translateX(800%);
 }

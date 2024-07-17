@@ -72,24 +72,6 @@ burgerI.addEventListener("click", () => {
     burgerMenu.classList.toggle("header-hidden");
   }
 });
-// header/navigation END
-
-// SECTION SLIDER START
-//
-// const images = document.querySelectorAll(".project-showcase .img");
-// const linkArray = [
-//   "https://amusedave.github.io/diceGame/",
-//   "https://amusedave.github.io/RockPaperScissorsGame/",
-//   "https://amusedave.github.io/audioMemoryGame/",
-//   "https://amusedave.github.io/amazonProject/",
-//   "https://amusedave.github.io/youTube/",
-//   "https://amusedave.github.io/facebook/",
-// ];
-// images.forEach((img, index) => {
-//   img.addEventListener("click", () => {
-//     window.open(linkArray[index], "_blank");
-//   });
-// });
 
 const showCaseImages = document.querySelectorAll(".img-link-box");
 const totalImages = showCaseImages.length;
